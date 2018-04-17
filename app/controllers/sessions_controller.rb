@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
 		else 
 			flash[:notice] = "Your username or password did not match our records. Please try again."
 			render 'new'
+		end	
 
 	end 
 
