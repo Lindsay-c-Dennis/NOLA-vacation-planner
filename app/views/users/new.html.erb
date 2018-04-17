@@ -1,0 +1,40 @@
+<h1>Create a New Account</h1>
+
+<%= form_for @user do |f| %>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@user.errors.count, "error") %> prohibited your account from being created:
+			</h2>
+
+			<ul>
+				<% @user.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>	
+			</ul>
+		</div>
+	<% end %>
+	
+	<div class="form-group">
+		<%= f.label :username, "Enter a Username:" %>
+		<%= f.text_field :username, class: "form-control" %>
+	</div>	
+
+	<div class="form-group">
+		<%= f.label :password, "Enter a password:" %>
+		<%= f.password_field :password, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :password_confirmation, "Confirm Your Password:" %>
+		<%= f.password_field :password_confirmation, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :email, "Enter Your Email Address:" %>
+		<%= f.email_field :email, class: "form-control" %>
+	</div>
+
+	<div class="action">
+		<%= f.submit "Create Account" %>
+	</div>
