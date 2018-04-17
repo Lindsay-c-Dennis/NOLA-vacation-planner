@@ -16,7 +16,7 @@
   <body>
   <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
-        <%= link_to "New Orleans Vacation Planner", '#', id: "logo" %>
+        <%= link_to image_tag("logo.png", alt: "logo", class: "span-3"), root_path %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home", root_path %></li>
@@ -32,6 +32,12 @@
         </nav>
       </div>
     </header>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
   <% if flash[:notice] %>
     <div class="notice"><%= flash[:notice] %></div>
   <% end %>
