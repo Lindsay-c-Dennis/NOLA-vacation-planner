@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create'
   get '/signup', to: 'users#new', as: 'signup'
   post '/signup', to: 'users#create'
-  resources :categories
+  resources :categories do 
+  	resources :landmarks, only: [:index]
+  end	
+
   resources :neighborhoods
   resources :landmarks
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
