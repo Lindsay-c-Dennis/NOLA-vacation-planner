@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users
   get '/login', to: 'sessions#new', as: 'login'
+  post '/sessions', to: 'sessions#create'
   get '/signup', to: 'users#new', as: 'signup'
   resources :categories
   resources :neighborhoods
