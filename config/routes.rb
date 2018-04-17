@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
   post '/sessions', to: 'sessions#create'
   get '/signup', to: 'users#new', as: 'signup'
+  post '/signup', to: 'users#create'
   resources :categories
   resources :neighborhoods
   resources :landmarks
