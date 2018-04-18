@@ -1,2 +1,10 @@
 <h1><%= @neighborhood.name %></h1>
+<div>
+<%= image_tag(@neighborhood.image_link) %>
+</div>
+<br />
+<p><%= @neighborhood.description %></p>
 
+<% if current_user.guide_status %>
+	<%= link_to "Edit This Neighborhood", edit_neighborhood_path(@neighborhood), class: "btn btn-primary" %>
+<% end %>	
