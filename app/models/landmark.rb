@@ -1,6 +1,7 @@
 class Landmark < ApplicationRecord
 	has_many :visits 
 	has_many :users, through: :visits 
+	has_many :reviews
 	belongs_to :category
 	belongs_to :neighborhood
 
