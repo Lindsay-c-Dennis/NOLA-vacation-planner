@@ -5,3 +5,7 @@
 		<p><%= neighborhood.description %></p>
 	<% end %>	
 </ul>
+
+<% if current_user.guide_status %>
+	<%= link_to "Add a New Neighborhood", new_neighborhood_path, class: "btn btn-primary" %>
+<% end %>

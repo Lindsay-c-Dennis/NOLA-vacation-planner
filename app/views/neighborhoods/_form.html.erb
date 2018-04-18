@@ -1,0 +1,35 @@
+<%= form_for @neighborhood do |f| %>
+	<% if @neighborhood.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@neighborhood.errors.count, "error") %> prohibited your neighborhood from being created:
+			</h2>
+
+			<ul>
+				<% @neighborhood.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>	
+			</ul>
+		</div>
+	<% end %>
+
+	<div class="form-group">
+		<%= f.label :name, "Name:" %>
+		<%= f.text_field :name, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :description, "Description:" %>
+		<%= f.text_field :description, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :image_link, "Please include a link to a picture of the neighborhood:" %>
+		<%= f.text_field :image_link, class: "form-control" %>
+	</div>
+
+	<div class="action">
+		<%= f.submit %>
+	</div>
+
+<% end %>	
