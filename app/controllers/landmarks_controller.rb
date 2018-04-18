@@ -4,4 +4,18 @@ class LandmarksController < ApplicationController
 		@landmarks = Landmark.all
 	end
 
+	def new
+		@landmark = Landmark.new
+	end
+
+	def create 
+		landmark = Landmark.new(landmark_params) 
+		if landmark.save
+			current_user.landmarks << landmark
+			redirect_to landmark_path(landmark)
+		else 
+			render 'new'
+		end 
+	end			  
+
 end
