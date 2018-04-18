@@ -5,6 +5,7 @@
 	<ul>
 		<li>Category: <%= link_to landmark.category.name, category_path(landmark.category) %></li>
 		<li>Neighborhood: <%= link_to landmark.neighborhood.name, neighborhood_path(landmark.neighborhood) %></li>
+		<li>Description: <%= landmark.description %> </li>	
 	</ul>
 <% end %>	
 
