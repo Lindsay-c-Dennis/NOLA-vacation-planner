@@ -1,4 +1,18 @@
 <%= form_for @landmark do |f| %>
+	<% if @landmark.errors.any? %>
+		<div id="error_explanation">
+			<h2>
+				<%= pluralize(@landmark.errors.count, "error") %> prohibited your landmark from being created:
+			</h2>
+
+			<ul>
+				<% @landmark.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>	
+			</ul>
+		</div>
+	<% end %>
+
 	<div class="form-group">
 		<%= f.label :name, "Name:" %>
 		<%= f.text_field :name, class: "form-control" %>
@@ -26,12 +40,12 @@
 
 	<div class="form-group">
 		<%= f.label :category, "Choose a Category:" %>
-		<%= f.collection_select(:category, Category.all, :id, :name, prompt: true, class: "form-control") %>
+		<%= f.collection_select(:category_id, Category.all, :id, :name, prompt: true, class: "form-control") %>
 	</div>
 
 	<div class="form-group">
 		<%= f.label :neighborhood, "Choose a Neighborhood:" %>
-		<%= f.collection_select(:neighborhood, Neighborhood.all, :id, :name, prompt: true, class: "form-control") %>
+		<%= f.collection_select(:neighborhood_id, Neighborhood.all, :id, :name, prompt: true, class: "form-control") %>
 	</div>
 
 	<div class="action">

@@ -9,9 +9,9 @@ class LandmarksController < ApplicationController
 	end
 
 	def create 
-		landmark = Landmark.new(landmark_params) 
-		if landmark.save
-			redirect_to landmark_path(landmark)
+		@landmark = Landmark.new(landmark_params) 
+		if @landmark.save
+			redirect_to landmark_path(@landmark)
 		else 
 			render 'new'
 		end 
