@@ -1,0 +1,11 @@
+<% @landmarks.each do |landmark| %>
+	<%= link_to landmark.name, landmark_path(landmark) %>
+	<ul>
+		<li><%= landmark.category %></li>
+		<li><%= landmark.neighborhood %></li>
+	</ul>
+<% end %>	
+
+<% if current_user.guide_status %>
+	<%= link_to "Add a New Landmark", new_landmark_path %>
+<% end %>
