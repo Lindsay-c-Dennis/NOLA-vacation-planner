@@ -3,8 +3,8 @@
 <% @landmarks.each do |landmark| %>
 	<%= link_to landmark.name, landmark_path(landmark) %>
 	<ul>
-		<li><%= landmark.category %></li>
-		<li><%= landmark.neighborhood %></li>
+		<li><%= link_to landmark.category.name, category_path(landmark.category) %></li>
+		<li><%= link_to landmark.neighborhood.name, neighborhood_path(landmark.neighborhood) %></li>
 	</ul>
 <% end %>	
 
