@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   post '/sessions', to: 'sessions#create'
   get '/signup', to: 'users#new', as: 'signup'
   post '/signup', to: 'users#create'
+  delete '/sessions', to: 'sessions#destroy'
   resources :categories do 
   	resources :landmarks, only: [:index]
   end	

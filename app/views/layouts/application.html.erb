@@ -19,14 +19,11 @@
         <%= link_to image_tag("logo.png", alt: "logo", class: "span-3"), root_path %>
         <nav>
           <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home", root_path %></li>
-            <% if !current_user %>
-              <li><%= link_to "Sign Up", signup_path %></li>
-              <li><%= link_to "Log In", login_path %></li>
-            <% else %>
+            <% if current_user %>
               <li><%= link_to "Landmarks", landmarks_path %></li>
               <li><%= link_to "Categories", categories_path %></li>
               <li><%= link_to "Neighborhoods", neighborhoods_path %></li>
+              <li><%= link_to "Log Out", sessions_path, method: 'delete' %></li>
             <% end %>  
           </ul>
         </nav>
