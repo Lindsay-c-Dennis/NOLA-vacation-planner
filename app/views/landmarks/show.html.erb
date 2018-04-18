@@ -21,7 +21,7 @@
 		<%= f.submit "Add to Itinerary", class: "btn btn-light" %>
 	<% end %>
 <% end %>	
-
+<br />
 <% if current_user.guide_status %>
 	<%= link_to "Edit This Landmark", edit_landmark_path(@landmark), class: "btn btn-primary" %>
 <% end %>	

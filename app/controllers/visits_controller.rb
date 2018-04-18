@@ -2,9 +2,16 @@ class VisitsController < ApplicationController
 
 	def create
 		visit = Visit.create(visit_params)
-		flash[:message] = "Itinerary Item successfully added!"
+		flash[:notice] = "Itinerary Item successfully added!"
 		redirect_to user_path(current_user) 
 	end 
+
+	def destroy
+		@visit = Visit.find_by(id: params[:id])
+		@visit.destroy
+		flash[:notice] = "Item removed from your itinerary."
+		redirect_to user_path(current_user)
+	end
 
 	private
 

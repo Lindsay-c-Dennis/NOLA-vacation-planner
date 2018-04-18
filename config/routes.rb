@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new', as: 'signup'
   post '/signup', to: 'users#create'
   delete '/sessions', to: 'sessions#destroy'
+  delete '/visits', to: 'visits#destroy'
   post '/visits', to: 'visits#create'
   resources :categories do 
   	resources :landmarks, only: [:index]

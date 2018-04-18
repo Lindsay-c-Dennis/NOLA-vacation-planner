@@ -1,9 +1,10 @@
-<h1>What's up, <%= @user.username %>?</h1>
+<h1>Welcome to New Orleans, <%= @user.username %>!</h1>
 
 <h2>Your Itinerary:</h2>
 <ul>
 	<% @visits.each do |visit| %>
-		<li><%= visit.name %></li>
+		<li><h3><%= link_to visit.landmark.name, landmark_path(visit.landmark) %> - <%= visit.landmark.neighborhood.name %></h3></li>
+		<%= button_to 'Remove from Itinerary', { controller: :visits, action: :destroy, id: visit.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning btn-xs" %>
 	<% end %>	
 </ul>	
 
