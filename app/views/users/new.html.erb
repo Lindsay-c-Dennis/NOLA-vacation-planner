@@ -35,6 +35,11 @@
 		<%= f.email_field :email, class: "form-control" %>
 	</div>
 
+	<div class="form-group">
+		<%= f.label :guide_status, "Check this box if you are a licensed tour guide" %>
+		<%= f.check_box :guide_status, class: "form-control" %>
+	</div>
+
 	<div class="action">
 		<%= f.submit "Create Account" %>
 	</div>
