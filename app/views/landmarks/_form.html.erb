@@ -1,0 +1,17 @@
+<%= form_for @landmark do |f| %>
+	<div class="form-group">
+		<%= f.label :name, "Name:" %>
+		<%= f.text_field :name, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :description, "Description: (please include cost and hours as applicable)" %>
+		<%= f.text_area :description, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :category, "Choose a Category:" %>
+		<%= f.collection_select(:category, Category.all, :id, :name, prompt: true, class: "form-control") %>
+	</div>
+
+<% end %>	
