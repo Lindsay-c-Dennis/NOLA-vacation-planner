@@ -1,3 +1,22 @@
 <h1><%= @landmark.name %></h1>
 
 <%= image_tag(@landmark.image_link) %>
+
+<p><%= @landmark.description %></p>
+
+<br/>
+
+<h4>Address: <%= @landmark.address %></h4>
+
+<h4>Category: <%= link_to @landmark.category.name, category_path(@landmark.category)  %></h4>
+
+<h4>Neighborhood: <%= link_to @landmark.neighborhood.name, category_path(@landmark.neighborhood)  %></h4>
+
+<h4><%= link_to "Find out more", @landmark.more_info_link %></h4>
+
+<% if current_user.guide_status %>
+	<%= link_to "Edit This Landmark", edit_landmark_path(@landmark), class: "btn btn-primary" %>
+<% end %>	
+
+
+
