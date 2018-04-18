@@ -15,6 +15,15 @@ class LandmarksController < ApplicationController
 		else 
 			render 'new'
 		end 
-	end			  
+	end	
 
+	def show
+		@landmark = Landmark.find_by(id: params[:id])
+	end	
+
+	private 
+
+	def landmark_params 
+		params.require(:landmark).permit(:name, :description, :neighborhood_id, :category_id, :image_link, :more_info_link, :address)		  
+	end	
 end
