@@ -1,3 +1,11 @@
 <h1>What's up, <%= @user.username %>?</h1>
 
-	
+<h2>Your Itinerary:</h2>
+<ul>
+	<% @visits.each do |visit| %>
+		<li><%= visit.name %></li>
+	<% end %>	
+</ul>	
+
+<h3>Want to add more stops to your itinerary?</h3>
+<%= link_to "View Landmarks", landmarks_path, class: "btn btn-primary" %>
