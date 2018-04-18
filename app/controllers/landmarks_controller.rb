@@ -17,6 +17,19 @@ class LandmarksController < ApplicationController
 		end 
 	end	
 
+	def edit 
+		@landmark = Landmark.find_by(id: params[:id])
+	end
+
+	def update 
+		@landmark = Landmark.find_by(id: params[:id])
+		if @landmark.update(landmark_params)
+			redirect_to landmark_path(@landmark)
+		else 
+			render 'edit'
+		end 
+	end			
+
 	def show
 		@landmark = Landmark.find_by(id: params[:id])
 	end	
