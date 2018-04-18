@@ -10,8 +10,32 @@
 	</div>
 
 	<div class="form-group">
+		<%= f.label :address, "Street Address:" %>
+		<%= f.text_field :address, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :image_link, "Please include a link to a photograph of this landmark:" %>
+		<%= f.text_field :image_link, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :more_info_link, "Please include a link with more information about this landmark:" %>
+		<%= f.text_field :more_info_link, class: "form-control" %>
+	</div>
+
+	<div class="form-group">
 		<%= f.label :category, "Choose a Category:" %>
 		<%= f.collection_select(:category, Category.all, :id, :name, prompt: true, class: "form-control") %>
+	</div>
+
+	<div class="form-group">
+		<%= f.label :neighborhood, "Choose a Neighborhood:" %>
+		<%= f.collection_select(:neighborhood, Neighborhood.all, :id, :name, prompt: true, class: "form-control") %>
+	</div>
+
+	<div class="action">
+		<%= f.submit %>
 	</div>
 
 <% end %>	
