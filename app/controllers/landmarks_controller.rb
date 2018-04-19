@@ -34,7 +34,7 @@ class LandmarksController < ApplicationController
 		@landmark = Landmark.find_by(id: params[:id])
 		@visit = @landmark.visits.build(user_id: current_user.id, landmark_id: @landmark.id)
 		@review = @landmark.reviews.build(user_id: current_user.id, landmark_id: @landmark.id)
-		@reviews = @landmark.reviews
+		@recent_reviews = @landmark.reviews.most_recent(3)
 	end	
 
 	private 

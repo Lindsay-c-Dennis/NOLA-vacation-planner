@@ -42,6 +42,11 @@
 
 <h3>Most Recent Reviews of <%= @landmark.name %>:</h3>
 
+<% @recent_reviews.each do |review| %>
+	<h3> <%= review.user.name %> says: </h3>
+	<p><%= review.content %></p>
+	<br />
+<% end %>
 	 
 
 <%= link_to "See More Reviews", landmark_reviews_path(@landmark) %>
