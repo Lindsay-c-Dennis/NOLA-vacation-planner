@@ -2,4 +2,11 @@
 
 <% if current_user.guide_status %>
 	<%= link_to "Edit This Category", edit_category_path(@category), class: "btn btn-primary" %>
-<% end %>	
+<% end %>
+
+<h2>Landmarks:</h2>
+<ul>
+<% @landmarks.each do |landmark| %>
+	<li><h3><%= link_to landmark.name, landmark_path(landmark) %> - <%= landmark.neighborhood.name %></h3></li>
+<% end %> 
+</ul>	
