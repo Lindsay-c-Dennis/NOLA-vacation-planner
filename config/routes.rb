@@ -8,7 +8,13 @@ Rails.application.routes.draw do
   delete '/visits', to: 'visits#destroy'
   post '/visits', to: 'visits#create'
   post '/reviews', to: 'reviews#create'
+
+
   resources :landmarks, only: [:show] do
+  	resources :reviews, only: [:index]
+  end
+
+  resources :users do 
   	resources :reviews
   end
 

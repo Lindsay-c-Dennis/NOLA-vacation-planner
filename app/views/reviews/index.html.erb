@@ -3,5 +3,11 @@
 <% @reviews.each do |review| %>
 	<h4><%= review.user.username %> on <%= review.landmark.name %>: </h4>
 	<p><%= review.content %></p>
+	<% if review.user_id == current_user.id %>
+		<div class="btn-group">
+			<%= button_to "Edit", edit_user_review_path(current_user, review), class: "btn btn-default btn-xs" %>
+			<%= button_to 'Delete', { controller: :reviews, action: :destroy, id: review.id }, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-xs" %>
+		</div>	
+	<% end %>	
 	<br />
 <% end %>

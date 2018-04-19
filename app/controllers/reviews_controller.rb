@@ -4,7 +4,7 @@ class ReviewsController < ApplicationController
 		if params[:landmark_id]
 			@reviews = Landmark.find(params[:landmark_id]).reviews 
 		elsif params[:user_id]
-			@reviews = Landmark.find(params[:user_id]).reviews 
+			@reviews = User.find(params[:user_id]).reviews 
 		end 
 	end		
 
@@ -18,6 +18,26 @@ class ReviewsController < ApplicationController
 			redirect_to landmark_path(review.landmark_id)
 		end 
 	end
+
+	def edit 
+		@review = Review.find_by(id: params[:id])
+	end 
+
+	def update 
+		review = Review.find_by(id: params[:id])
+		if review.save 
+			redirect_to user_reviews_path(current_user)
+		else 
+			render 'edit'
+		end
+	end	
+
+	def destroy 
+		@review = Review.find_by(id: params[:id])
+		@review.destroy
+		flash[:notice] = "Your review has been deleted."
+		redirect_to user_reviews_path(current_user)	
+	end		
 
 	private
 
