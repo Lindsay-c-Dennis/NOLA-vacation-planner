@@ -5,14 +5,28 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		user = User.find_by(username: params[:username])
-		if user && user.authenticate(params[:password])
-			session[:user_id] = user.id 
-			redirect_to user_path(user)
-		else 
-			flash[:notice] = "Your username or password did not match our records. Please try again."
-			render 'new'
-		end	
+		if auth_hash = request.env["omniauth.auth"]
+			oauth_email = request.env["omniauth.auth"]["info"]["email"]
+			oauth_name = request.env["omniauth.auth"]["info"]["name"]
+			if user = User.find_by(email: oauth_email)
+				session[:user_id] = user.id 
+				redirect_to user_path(user)
+			else 
+			    user = User.create(email: oauth_email, name: oauth_name, password: SecureRandom.hex)
+			    session[:user_id] = user.id
+			    redirect_to user_path(user)	
+			end	
+
+		else	
+	 		user = User.find_by(name: params[:name])
+			if user && user.authenticate(params[:password])
+				session[:user_id] = user.id 
+				redirect_to user_path(user)
+			else 
+				flash[:notice] = "Your username or password did not match our records. Please try again."
+				render 'new'
+			end
+		end		
 
 	end 
 

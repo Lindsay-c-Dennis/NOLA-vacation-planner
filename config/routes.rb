@@ -8,14 +8,16 @@ Rails.application.routes.draw do
   delete '/visits', to: 'visits#destroy'
   post '/visits', to: 'visits#create'
   post '/reviews', to: 'reviews#create'
-
-
+  post '/users/:id/reviews/:id/edit', to: 'reviews#edit'
+  get '/auth/google_oauth2/callback', to: 'sessions#create'
+  
+  resources :reviews, only: [:edit]
   resources :landmarks, only: [:show] do
   	resources :reviews, only: [:index]
   end
 
-  resources :users do 
-  	resources :reviews
+  resources :users, only: [:show, :index] do 
+  	resources :reviews, only: [:show, :index, :new, :edit, :update, :destroy]
   end
 
   resources :categories 
