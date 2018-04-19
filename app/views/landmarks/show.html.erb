@@ -40,13 +40,11 @@
 	</div>
 <% end %>	
 
-<h3>Reviews of <%= @landmark.name %>:</h3>
+<h3>Most Recent Reviews of <%= @landmark.name %>:</h3>
 
-<% @reviews.each do |review| %>
-	<h4><%= review.user.username %> says: </h4>
-	<p><%= review.content %></p>
-	<br />
-<% end %>	 
+	 
+
+<%= link_to "See More Reviews", landmark_reviews_path(@landmark) %>
 
 
 

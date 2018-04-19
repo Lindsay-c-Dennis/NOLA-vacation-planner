@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/visits', to: 'visits#destroy'
   post '/visits', to: 'visits#create'
   post '/reviews', to: 'reviews#create'
-  resources :landmarks do
+  resources :landmarks, only: [:show] do
   	resources :reviews
   end
 

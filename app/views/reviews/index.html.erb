@@ -1,0 +1,7 @@
+<h1>Reviews:</h1>
+
+<% @reviews.each do |review| %>
+	<h4><%= review.user.username %> on <%= review.landmark.name %>: </h4>
+	<p><%= review.content %></p>
+	<br />
+<% end %>
