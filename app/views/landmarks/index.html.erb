@@ -1,7 +1,8 @@
 <h1>Local Landmarks:</h1>
 
 <% @landmarks.each do |landmark| %>
-	<%= link_to landmark.name, landmark_path(landmark) %>
+	<h3><%= link_to landmark.name, landmark_path(landmark) %></h3>
+	<%= image_tag landmark.image_link, class: "img-rounded" %>
 	<ul>
 		<li>Category: <%= link_to landmark.category.name, category_path(landmark.category) %></li>
 		<li>Neighborhood: <%= link_to landmark.neighborhood.name, neighborhood_path(landmark.neighborhood) %></li>
