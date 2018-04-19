@@ -26,5 +26,29 @@
 	<%= link_to "Edit This Landmark", edit_landmark_path(@landmark), class: "btn btn-primary" %>
 <% end %>	
 
+<h3>Add Your Review of <%=@landmark.name%>:</h3>
+
+<%= form_for @review do |f| %>
+	<div class="form-group">
+		<%= f.hidden_field :user_id %>
+		<%= f.hidden_field :landmark_id %>
+		<%= f.label :content, "Review:" %>
+		<%= f.text_area :content, class: "form-control" %>
+	</div>
+
+	<div class="action">
+		<%= f.submit %>
+	</div>
+<% end %>	
+
+<h3>Reviews of <%= @landmark.name %>:</h3>
+
+<% @reviews.each do |review| %>
+	<h4><%= review.user.username %> says: </h4>
+	<p><%= review.content %></p>
+	<br />
+<% end %>	 
+
+
 
 

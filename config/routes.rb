@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   delete '/sessions', to: 'sessions#destroy'
   delete '/visits', to: 'visits#destroy'
   post '/visits', to: 'visits#create'
+  post '/reviews', to: 'reviews#create'
   resources :categories do 
   	resources :landmarks, only: [:index]
   end	
