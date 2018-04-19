@@ -8,3 +8,10 @@
 <% if current_user.guide_status %>
 	<%= link_to "Edit This Neighborhood", edit_neighborhood_path(@neighborhood), class: "btn btn-primary" %>
 <% end %>	
+
+<h2>Landmarks in this neighborhood:</h2>
+<ul>
+<% @landmarks.each do |landmark| %>
+	<li><h3><%= link_to landmark.name, landmark_path(landmark) %> - <%= landmark.category.name %></h3></li>
+<% end %> 
+</ul>	
