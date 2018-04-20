@@ -1,4 +1,5 @@
 class LandmarksController < ApplicationController
+	before_action :find_landmark, only: [:edit, :update, :show]
 
 	def index
 		@landmarks = Landmark.all
@@ -18,11 +19,9 @@ class LandmarksController < ApplicationController
 	end	
 
 	def edit 
-		@landmark = Landmark.find_by(id: params[:id])
 	end
 
 	def update 
-		@landmark = Landmark.find_by(id: params[:id])
 		if @landmark.update(landmark_params)
 			redirect_to landmark_path(@landmark)
 		else 
@@ -31,7 +30,6 @@ class LandmarksController < ApplicationController
 	end			
 
 	def show
-		@landmark = Landmark.find_by(id: params[:id])
 		@visit = @landmark.visits.build(user_id: current_user.id, landmark_id: @landmark.id)
 		@recent_reviews = @landmark.reviews.most_recent(3)
 	end	
@@ -41,4 +39,8 @@ class LandmarksController < ApplicationController
 	def landmark_params 
 		params.require(:landmark).permit(:name, :description, :neighborhood_id, :category_id, :image_link, :more_info_link, :address)		  
 	end	
+
+	def find_landmark
+		@landmark = Landmark.find_by(id: params[:id])
+	end
 end

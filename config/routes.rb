@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   post '/users/:id/reviews/:id/edit', to: 'reviews#edit'
   get '/auth/google_oauth2/callback', to: 'sessions#create'
 
-  
+  resources :landmarks
   resources :reviews, only: [:edit]
   resources :landmarks, only: [:show, :index] do
   	resources :reviews, only: [:index, :new, :create, :edit, :update, :destroy]
@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   resources :categories 
 
   resources :neighborhoods
-  resources :landmarks
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'static_pages#home'
 end
