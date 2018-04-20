@@ -1,11 +1,11 @@
 class NeighborhoodsController < ApplicationController
+	before_action :find_neighborhood, only: [:show, :edit, :update]
 
 	def index
 		@neighborhoods = Neighborhood.all 
 	end
 
 	def show 
-		@neighborhood = Neighborhood.find_by(id: params[:id])
 		@landmarks = @neighborhood.landmarks
 	end	
 
@@ -24,11 +24,9 @@ class NeighborhoodsController < ApplicationController
 	end 
 
 	def edit 
-		@neighborhood = Neighborhood.find_by(id: params[:id])
 	end 
 	
 	def update 
-		@neighborhood = Neighborhood.find_by(id: params[:id])
 		if @neighborhood.update(neighborhood_params)
 			flash[:message] = "Neighborhood successfully updated."
 			redirect_to neighborhood_path(@neighborhood)
@@ -41,7 +39,11 @@ class NeighborhoodsController < ApplicationController
 
 	def neighborhood_params 
 		params.require(:neighborhood).permit(:name, :image_link, :description)
-	end						
+	end	
+
+	def find_neighborhood 
+		@neighborhood = Neighborhood.find_by(id: params[:id])	
+	end				
 
 
 end
