@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
 	skip_before_action :verify_login, only: [:new, :create]
+	
 	def new
 		@user = User.new
 	end
 
 	def create
 		if auth_hash = request.env["omniauth.auth"]
-			oauth_email = request.env["omniauth.auth"]["info"]["email"]
-			oauth_name = request.env["omniauth.auth"]["info"]["name"]
+			oauth_email = auth_hash["info"]["email"]
+			oauth_name = auth_hash["info"]["name"]
 			if user = User.find_by(email: oauth_email)
 				session[:user_id] = user.id 
 				redirect_to user_path(user)
@@ -16,14 +17,13 @@ class SessionsController < ApplicationController
 			    session[:user_id] = user.id
 			    redirect_to user_path(user)	
 			end	
-
 		else	
 	 		user = User.find_by(name: params[:name])
 			if user && user.authenticate(params[:password])
-				session[:user_id] = user.id 
+				session[:user_id] = @user.id 
 				redirect_to user_path(user)
 			else 
-				flash[:notice] = "Your username or password did not match our records. Please try again."
+				flash[:notice] = "Your name and password did not match our records. Please try again."
 				render 'new'
 			end
 		end		
