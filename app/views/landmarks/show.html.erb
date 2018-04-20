@@ -31,6 +31,9 @@
 <% @recent_reviews.each do |review| %>
 	<h3> <%= review.user.name %> says: </h3>
 	<p><%= review.content %></p>
+	<% if review.user_id == current_user.id %>
+		<%= link_to "Edit", edit_landmark_review_path(@landmark, review) %>
+	<% end %>	
 	<br />
 <% end %>
 

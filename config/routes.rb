@@ -13,11 +13,11 @@ Rails.application.routes.draw do
 
   
   resources :reviews, only: [:edit]
-  resources :landmarks, only: [:show] do
-  	resources :reviews, only: [:index, :new, :create]
+  resources :landmarks, only: [:show, :index] do
+  	resources :reviews, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 
-  resources :users, only: [:show, :index] do 
+  resources :users do 
   	resources :reviews, only: [:show, :index, :new, :edit, :update, :destroy]
   end
 

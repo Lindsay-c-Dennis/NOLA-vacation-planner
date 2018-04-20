@@ -13,6 +13,8 @@
 
 <br />
 <br />
+<%= link_to "Edit Your Profile", edit_user_path(current_user), class: "btn btn-primary" %>
+
 <% unless current_user.guide_status %>
 <h3><em>Do you know the city like the back of your hand? Do you roll your eyes whenever you hear someone say 'Nawlins'? Have you ever wrestled an alligator with your bare hands? If so, consider marking yourself as a tour guide. This allows you to edit and add new landmarks.</em></h3>
 	<%= form_for @user do |f| %>

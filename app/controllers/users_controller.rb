@@ -20,9 +20,14 @@ class UsersController < ApplicationController
 		@visits = @user.visits
 	end 
 
+	def edit
+		@user = User.find_by(id: session[:user_id])
+	end	
+
 	def update
 		@user = User.find(session[:user_id])
-		@user.guide_status = true 
+		@user.guide_status = !@user.guide_status
+		@user.save
 		redirect_to user_path(@user)
 	end
 	
