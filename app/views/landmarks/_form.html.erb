@@ -1,17 +1,5 @@
 <%= form_for @landmark do |f| %>
-	<% if @landmark.errors.any? %>
-		<div id="error_explanation">
-			<h2>
-				<%= pluralize(@landmark.errors.count, "error") %> prohibited your landmark from being created:
-			</h2>
-
-			<ul>
-				<% @landmark.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>	
-			</ul>
-		</div>
-	<% end %>
+	<%= render partial: 'users/errors', locals: { model: @landmark, item: "landmark" } %>
 
 	<div class="form-group">
 		<%= f.label :name, "Name:" %>
