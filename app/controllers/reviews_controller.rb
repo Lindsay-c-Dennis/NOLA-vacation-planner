@@ -1,4 +1,5 @@
 class ReviewsController < ApplicationController
+	before_action :find_review, only: [:edit, :update, :destroy]
 
 	def index 
 		if params[:landmark_id]
@@ -26,13 +27,11 @@ class ReviewsController < ApplicationController
 	end
 
 	def edit 
-		@review = Review.find(params[:id])
 	end 
 
 	def update 
-		review = Review.find_by(id: params[:id])
-		review.content = params[:review][:content]
-		if review.save 
+		@review.content = params[:review][:content]
+		if @review.save 
 			redirect_to user_reviews_path(current_user)
 		else 
 			render 'edit'
@@ -40,7 +39,6 @@ class ReviewsController < ApplicationController
 	end	
 
 	def destroy 
-		@review = Review.find_by(id: params[:id])
 		@review.destroy
 		flash[:notice] = "Your review has been deleted."
 		redirect_to user_reviews_path(current_user)	
@@ -50,6 +48,10 @@ class ReviewsController < ApplicationController
 
 	def review_params
 		params.require(:review).permit(:user_id, :landmark_id, :content)
+	end	
+
+	def find_review 
+		@review = Review.find_by(id: params[:id])
 	end				
 
 end
