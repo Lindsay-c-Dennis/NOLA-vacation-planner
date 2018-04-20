@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :find_review, only: [:edit, :update, :destroy]
+	before_action :find_landmark, only: [:new, :create]
 
 	def index 
 		if params[:landmark_id]
@@ -10,19 +11,16 @@ class ReviewsController < ApplicationController
 	end		
 
 	def new 
-		@review = Review.new
-		@landmark = Landmark.find(params[:landmark_id])
 		@review = @landmark.reviews.build(user_id: current_user.id, landmark_id: @landmark.id) 
 	end
 
 	def create
-		review = Review.new(review_params)
-		if review.save
+		@review = Review.new(review_params)
+		if @review.save
 			flash[:notice] = "Review successfully added." 
-			redirect_to landmark_path(review.landmark_id)
+			redirect_to landmark_path(@review.landmark_id)
 		else 
-			flash[:notice] = "Something went wrong."
-			redirect_to landmark_path(review.landmark_id)
+			render 'new'
 		end 
 	end
 
@@ -52,6 +50,10 @@ class ReviewsController < ApplicationController
 
 	def find_review 
 		@review = Review.find_by(id: params[:id])
+	end
+
+	def find_landmark
+		@landmark = Landmark.find_by(params[:landmark_id])
 	end				
 
 end

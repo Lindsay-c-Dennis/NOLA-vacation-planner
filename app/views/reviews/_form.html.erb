@@ -1,4 +1,6 @@
 <%= form_for [landmark, review] do |f| %>
+	<%= render partial: 'users/errors', locals: { model: review, item: "review" } %>
+
 	<div class="form-group">
 		<%= f.hidden_field :user_id %>
 		<%= f.hidden_field :landmark_id %>
