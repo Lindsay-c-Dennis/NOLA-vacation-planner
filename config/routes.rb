@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/auth/google_oauth2/callback', to: 'sessions#create'
 
   resources :landmarks
-  resources :reviews, only: [:edit]
+  resources :reviews, only: [:edit, :destroy]
   resources :landmarks, only: [:show, :index] do
   	resources :reviews, only: [:index, :new, :create, :edit, :update, :destroy]
   end
