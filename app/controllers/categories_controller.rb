@@ -1,4 +1,5 @@
 class CategoriesController < ApplicationController
+	before_action :find_category, only: [:edit, :update, :show]
 
 	def new
 		@category = Category.new 
@@ -15,11 +16,9 @@ class CategoriesController < ApplicationController
 
 	
 	def edit 
-		@category = Category.find_by(id: params[:id])
 	end 
 	
 	def update 
-		@category = Category.find_by(id: params[:id])
 		if @category.update(category_params)
 			redirect_to category_path(@category)
 		else 
@@ -32,7 +31,6 @@ class CategoriesController < ApplicationController
 	end
 	
 	def show
-		@category = Category.find_by(id: params[:id])
 		@landmarks = @category.landmarks
 	end
 
@@ -41,5 +39,9 @@ class CategoriesController < ApplicationController
 	def category_params 
 		params.require(:category).permit(:name)
 	end
+
+	def find_category
+		@category = Category.find_by(id: params[:id])
+	end	
 
 end
