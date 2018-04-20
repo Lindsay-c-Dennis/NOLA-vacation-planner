@@ -1,17 +1,6 @@
 <%= form_for @category do |f| %>
-	<% if @category.errors.any? %>
-		<div id="error_explanation">
-			<h2>
-				<%= pluralize(@category.errors.count, "error") %> prohibited your category from being created:
-			</h2>
-
-			<ul>
-				<% @category.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>	
-			</ul>
-		</div>
-	<% end %>
+	<%= render partial: 'users/errors', locals: { model: @category, item: "category" } %>
+	
 
 	<div class="form-group">
 		<%= f.label :name, "Name:" %>
