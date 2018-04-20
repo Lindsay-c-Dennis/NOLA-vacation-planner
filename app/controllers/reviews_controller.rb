@@ -31,6 +31,7 @@ class ReviewsController < ApplicationController
 
 	def update 
 		review = Review.find_by(id: params[:id])
+		review.content = params[:review][:content]
 		if review.save 
 			redirect_to user_reviews_path(current_user)
 		else 
