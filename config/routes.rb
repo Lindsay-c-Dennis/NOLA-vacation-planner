@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   post '/reviews', to: 'reviews#create'
   post '/users/:id/reviews/:id/edit', to: 'reviews#edit'
   get '/auth/google_oauth2/callback', to: 'sessions#create'
+  get '/recent_reviews', to: 'reviews#recent_reviews'
 
   resources :landmarks
   resources :reviews, only: [:edit, :destroy]
