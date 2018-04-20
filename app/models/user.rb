@@ -5,6 +5,6 @@ class User < ApplicationRecord
 	has_many :reviews
 
 	validates :name, presence: true, uniqueness: true 
-	validates :password, presence: true 
+	validates :password_digest, presence: true 
 	validates :email, presence: true 
 end

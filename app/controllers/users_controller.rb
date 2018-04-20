@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
 	def update
 		@user = User.find(session[:user_id])
-		@user.guide_status = !@user.guide_status
+		@user.guide_status = params[:user][:guide_status]
 		@user.save
 		redirect_to user_path(@user)
 	end
