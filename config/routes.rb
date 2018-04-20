@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resources :users do 
-  	resources :reviews, only: [:show, :index, :new, :edit, :update, :destroy]
+  	resources :reviews, only: [:index]
   end
 
   resources :categories 
