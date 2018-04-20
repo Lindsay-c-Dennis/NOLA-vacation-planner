@@ -2,8 +2,6 @@
 <% if @reviews.empty? %>
 	<h3>There are no reviews to show.</h3>
 <% else %>	
-	<% @reviews.each do |review| %>
-		<%= render partial: 'reviews/review_index', locals: { review: review } %>
-	<% end %>
+	<%= render partial: 'reviews/review_index', locals: { array: @reviews } %>
 <% end %>	
 

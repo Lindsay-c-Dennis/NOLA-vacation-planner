@@ -1,8 +1,10 @@
-<h3> <%= review.user.name %> says: </h3>
-	<p><%= review.content %></p>
-	<h6><em><%= posted_at review %></em></h6>
-	<% if review.user_id == current_user.id %>
-		<%= link_to "Edit", edit_landmark_review_path(review.landmark, review), class: "btn btn-default btn-xs" %>
-		<%= button_to 'Delete', { controller: :reviews, action: :destroy, id: review.id }, method: :delete, data: { confirm: 'Are you sure you want to delete your review?' }, class: "btn btn-danger btn-xs" %>
-	<% end %>	
-	<br />
+<% array.each do |review| %>
+	<h3> <%= review.user.name %> says: </h3>
+		<p><%= review.content %></p>
+		<h6><em><%= posted_at review %></em></h6>
+		<% if review.user_id == current_user.id %>
+			<%= link_to "Edit", edit_landmark_review_path(review.landmark, review), class: "btn btn-default btn-xs" %>
+			<%= button_to 'Delete', { controller: :reviews, action: :destroy, id: review.id }, method: :delete, data: { confirm: 'Are you sure you want to delete your review?' }, class: "btn btn-danger btn-xs" %>
+		<% end %>	
+		<br />
+<% end %>	
