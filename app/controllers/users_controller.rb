@@ -19,11 +19,17 @@ class UsersController < ApplicationController
 		@user = User.find_by(id: session[:user_id])
 		@visits = @user.visits
 	end 
+
+	def update
+		@user = User.find(session[:user_id])
+		@user.guide_status = true 
+		redirect_to user_path(@user)
+	end
 	
 	private 
 
 	def user_params 
-		params.require(:user).permit(:name, :password, :password_confirmation, :uid, :image, :email, :guide_status)
+		params.require(:user).permit(:name, :password, :password_confirmation, :email, :guide_status)
 	end		
 
 end

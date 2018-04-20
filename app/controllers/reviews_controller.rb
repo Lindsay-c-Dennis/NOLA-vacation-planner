@@ -8,6 +8,12 @@ class ReviewsController < ApplicationController
 		end 
 	end		
 
+	def new 
+		@review = Review.new
+		@landmark = Landmark.find(params[:landmark_id])
+		@review = @landmark.reviews.build(user_id: current_user.id, landmark_id: @landmark.id) 
+	end
+
 	def create
 		review = Review.new(review_params)
 		if review.save
