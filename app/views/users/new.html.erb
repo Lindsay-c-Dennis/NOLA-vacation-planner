@@ -1,19 +1,7 @@
 <h1>Create a New Account</h1>
 
 <%= form_for @user do |f| %>
-	<% if @user.errors.any? %>
-		<div id="error_explanation">
-			<h2>
-				<%= pluralize(@user.errors.count, "error") %> prohibited your account from being created:
-			</h2>
-
-			<ul>
-				<% @user.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-				<% end %>	
-			</ul>
-		</div>
-	<% end %>
+	<%= render partial: 'errors', locals: { model: @user, item: "account" } %>
 	
 	<div class="form-group">
 		<%= f.label :name, "Enter a Name:" %>
