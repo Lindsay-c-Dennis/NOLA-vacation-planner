@@ -5,6 +5,7 @@ class Landmark < ApplicationRecord
 	belongs_to :category
 	belongs_to :neighborhood
 
-	validates :name, presence: true, uniqueness: true 
+	validates :name, presence: true, uniqueness: true
+	validates :image_link, presence: true 
 	
 end
