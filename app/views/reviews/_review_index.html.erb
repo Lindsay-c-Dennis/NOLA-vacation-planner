@@ -1,5 +1,5 @@
 <% array.each do |review| %>
-	<h3> <%= review.user.name %> says: </h3>
+	<h3> On <%= link_to review.landmark.name, landmark_path(review.landmark) %>, <%= review.user.name %> says: </h3>
 		<p><%= review.content %></p>
 		<h6><em><%= posted_at review %></em></h6>
 		<% if review.user_id == current_user.id %>

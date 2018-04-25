@@ -1,6 +1,8 @@
 <h1><%= @neighborhood.name %></h1>
 <div>
-<%= image_tag(@neighborhood.image_link, class: "img-responsive") %>
+<% if @neighborhood.image_link %>
+	<%= image_tag(@neighborhood.image_link, class: "img-responsive") %>
+<% end %>	
 </div>
 <br />
 <p><%= @neighborhood.description %></p>

@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
 
 	def create
 		@category = Category.new(category_params)
+		#check to see if user input passes validations
 		if @category.save 
 			redirect_to category_path(@category)
 		else 
@@ -19,6 +20,7 @@ class CategoriesController < ApplicationController
 	end 
 	
 	def update 
+		#checks to see if user input for edit passes validations
 		if @category.update(category_params)
 			redirect_to category_path(@category)
 		else 
@@ -36,10 +38,12 @@ class CategoriesController < ApplicationController
 
 	private
 
+	#defines acceptable params
 	def category_params 
 		params.require(:category).permit(:name)
 	end
 
+	#defines before_action for actions that require identifying a category by a dynamic id
 	def find_category
 		@category = Category.find_by(id: params[:id])
 	end	

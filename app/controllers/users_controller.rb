@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :find_user, only: [:edit, :update, :show]
+	#override the verify login method from the application controller to allow certain methods to be called before login
 	skip_before_action :verify_login, only: [:new, :create]
 	
 	def new
