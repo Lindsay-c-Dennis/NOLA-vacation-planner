@@ -6,18 +6,22 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		if auth_hash = request.env["omniauth.auth"]
-			oauth_email = auth_hash["info"]["email"]
-			oauth_name = auth_hash["info"]["name"]
+		#if user signs in with google
+		if auth_hash = request.env["omniauth.auth"]["info"]
+			oauth_email = auth_hash["email"]
+			oauth_name = auth_hash["name"]
+			#check to see if account with that email exists, if so, log user in
 			if user = User.find_by(email: oauth_email)
 				session[:user_id] = user.id 
 				redirect_to user_path(user)
+			#if not, create a new user with the email and name info from google, create a secure password for user	
 			else 
 			    user = User.create(email: oauth_email, name: oauth_name, password: SecureRandom.hex)
 			    session[:user_id] = user.id
 			    redirect_to user_path(user)	
 			end	
-		else	
+		else
+			#if user signs in through regular log in page	
 	 		user = User.find_by(name: params[:name])
 			if user && user.authenticate(params[:password])
 				session[:user_id] = @user.id 
