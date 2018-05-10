@@ -2,7 +2,11 @@
 
 <%= link_to "View Categories", categories_path, id: "view-cats", class: "btn btn-primary" %> 
 
-<div id="categories"></div>
+<div>
+	<ul id="categories">
+		
+	</ul>
+</div>
 
 <% @landmarks.each do |landmark| %>
 	<h3><%= link_to landmark.name, landmark_path(landmark) %></h3>

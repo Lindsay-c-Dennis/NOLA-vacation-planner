@@ -11,6 +11,10 @@ function attachListeners() {
 
 function showCats() {
 	$.get('/categories', (categories) => {
-		console.log(categories);
+		categories.forEach(buildCatLink);
 	});	
+}
+
+function buildCatLink(category) {
+	$('#categories').append(`<li><a href="/categories/${category.id}">${category.name}</a></li>`);
 }
