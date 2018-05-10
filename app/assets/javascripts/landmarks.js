@@ -19,10 +19,6 @@ function showCats() {
 	});	
 }
 
-function hideCats() {
-	
-}
-
 function buildCatLink(category) {
 	$('#categories').append(`<li><a href="/categories/${category.id}">${category.name}</a></li>`);
 }
