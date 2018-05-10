@@ -30,7 +30,7 @@ class LandmarksController < ApplicationController
 	end			
 
 	def show
-		@visit = @landmark.visits.build(user_id: current_user.id, landmark_id: @landmark.id)
+		#@visit = @landmark.visits.build(user_id: current_user.id, landmark_id: @landmark.id)
 		@recent_reviews = @landmark.reviews.most_recent(3)
 	end	
 

@@ -30,12 +30,16 @@
 
 <h3>Most Recent Reviews of <%= @landmark.name %>:</h3>
 
-<%= render partial: 'reviews/review_index', locals: { array: @recent_reviews } %>
+<div id="landmark-reviews">
+	<%= render partial: 'reviews/review_index', locals: { array: @recent_reviews } %>
+</div>
 
 <div class= "btn-group-justified">	 
 	<%= link_to "Add Your Review", new_landmark_review_path(@landmark, @review), class: "btn btn-success" %>
-	<%= link_to "See More Reviews", landmark_reviews_path(@landmark), class: "btn btn-primary" %>
-</div>	
+	<%= link_to "See More Reviews", landmark_reviews_path(@landmark), id: "more-reviews", class: "btn btn-primary" %>
+</div>
+
+<div id="older-reviews"></div>	
 
 
 

@@ -7,7 +7,8 @@ class ReviewsController < ApplicationController
 			@reviews = Landmark.find(params[:landmark_id]).reviews 
 		elsif params[:user_id]
 			@reviews = User.find(params[:user_id]).reviews 
-		end 
+		end
+		render json: @reviews 
 	end		
 
 	def new 
