@@ -2,7 +2,7 @@
 <ul>
 	<% @neighborhoods.each do |neighborhood| %>
 		<li><h3><%= link_to neighborhood.name, neighborhood_path(neighborhood) %></h3> </li>
-		<%= image_tag neighborhood.image_link, class: "img-rounded img-responsive" unless !neighborhood.image_link %>
+		<%= image_tag neighborhood.image_link, style: "width: 40%" unless !neighborhood.image_link %>
 		<h4><%= neighborhood.description %></h4>
 	<% end %>	
 </ul>
