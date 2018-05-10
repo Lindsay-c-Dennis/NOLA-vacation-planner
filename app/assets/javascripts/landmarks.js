@@ -7,12 +7,20 @@ function attachListeners() {
 		e.preventDefault();
 		showCats();
 	});
+
+	$('#hide-cats').on('click', function() {
+			$('#categories').empty();
+		});
 }
 
 function showCats() {
 	$.get('/categories', (categories) => {
 		categories.forEach(buildCatLink);
 	});	
+}
+
+function hideCats() {
+	
 }
 
 function buildCatLink(category) {
