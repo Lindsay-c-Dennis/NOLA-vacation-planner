@@ -14,6 +14,5 @@ function attachListeners() {
 }
 
 function printReview(review) {
-	debugger
-	$('#landmark-reviews').append(`<li><strong>${review.name} says:</strong> ${review.content}</li>`);
+	$('#landmark-reviews').append(`<li><strong>${review.user.name} says:</strong> ${review.content}</li>`);
 }

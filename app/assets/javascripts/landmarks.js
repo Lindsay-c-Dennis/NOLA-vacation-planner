@@ -1,10 +1,9 @@
 $(document).ready(function() {
-	attachListeners();
-});
+	attachButtonListeners();
+})
 
-function attachListeners() {
-	$('#view-cats').on('click', function(e) {
-		e.preventDefault();
+function attachButtonListeners() {
+	$('#view-cats').on('click', function() {
 		showCats();
 	});
 
@@ -20,5 +19,5 @@ function showCats() {
 }
 
 function buildCatLink(category) {
-	$('#categories').append(`<li><a href="/categories/${category.id}">${category.name}</a></li>`);
+	$('#categories').append(`<li><h4><a href="/categories/${category.id}">${category.name}</a></h4></li>`);
 }
