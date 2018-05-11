@@ -7,6 +7,10 @@ class NeighborhoodsController < ApplicationController
 
 	def show 
 		@landmarks = @neighborhood.landmarks
+		respond_to do |format|
+			format.html { render :show }
+			format.json { render json: @neighborhood }
+		end
 	end	
 
 	def new

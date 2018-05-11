@@ -1,11 +1,9 @@
-<h1><%= @neighborhood.name %></h1>
-<div>
-<% if @neighborhood.image_link %>
-	<%= image_tag(@neighborhood.image_link, class: "img-responsive") %>
-<% end %>	
+<h1 class="neighborhoodName"><%= @neighborhood.name %></h1>
+<div class="neighborhoodImage">
+	<%= image_tag(@neighborhood.image_link, class: "img-responsive") %>	
 </div>
 <br />
-<p><%= @neighborhood.description %></p>
+<p class="neighborhoodDescription"><%= @neighborhood.description %></p>
 
 <% if current_user.guide_status %>
 	<%= link_to "Edit This Neighborhood", edit_neighborhood_path(@neighborhood), class: "btn btn-primary" %>
@@ -17,3 +15,21 @@
 	<li><h3><%= link_to landmark.name, landmark_path(landmark) %> - <%= landmark.category.name %></h3></li>
 <% end %> 
 </ul>	
+
+<a href="#" class="js-next" data-id="<%=@neighborhood.id%>">Next Neighborhood</a>
+
+<script type="text/javascript" charset="utf-8">
+$(function () {
+  $(".js-next").on("click", function() {
+    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    $.get("/neighborhoods/" + nextId + ".json", function(data) {
+      var neighborhood = data;
+      $(".neighborhoodName").text(neighborhood["name"]);
+      $(".neighborhoodDescription").text(neighborhood["description"]);
+      $(".neighborhoodImage img").attr("src", neighborhood["image_link"]);
+      // re-set the id to current on the link
+      $(".js-next").attr("data-id", neighborhood["id"]);
+    });
+  });
+});
+</script>
