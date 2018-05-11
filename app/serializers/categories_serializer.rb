@@ -1,3 +1,4 @@
-class CategoriesSerializer < ActiveModel::Serializer
+class CategorySerializer < ActiveModel::Serializer
   attributes :id, :name
+  has_many :landmarks
 end

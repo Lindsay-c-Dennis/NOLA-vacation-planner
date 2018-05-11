@@ -26,6 +26,7 @@ $(function () {
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/neighborhoods/" + nextId + ".json", function(data) {
       var neighborhood = data;
+      debugger
       $(".neighborhoodName").text(neighborhood["name"]);
       $(".neighborhoodDescription").text(neighborhood["description"]);
       $(".neighborhoodImage img").attr("src", neighborhood["image_link"]);
