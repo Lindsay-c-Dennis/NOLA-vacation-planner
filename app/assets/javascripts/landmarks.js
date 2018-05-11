@@ -6,10 +6,10 @@ function attachButtonListeners() {
 	$('#view-cats').on('click', function() {
 		showCats();
 	});
-
+	
 	$('#hide-cats').on('click', function() {
-			$('#categories').empty();
-		});
+		$('#categories').empty();
+	});
 }
 
 function showCats() {
