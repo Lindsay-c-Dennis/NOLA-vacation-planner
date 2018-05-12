@@ -12,7 +12,8 @@ class ReviewsController < ApplicationController
 	end		
 
 	def new 
-		@review = @landmark.reviews.build(user_id: current_user.id, landmark_id: @landmark.id) 
+		@review = @landmark.reviews.build(user_id: current_user.id, landmark_id: @landmark.id)
+		render partial: 'form', locals: { review: @review, landmark: @landmark } 
 	end
 
 	def create

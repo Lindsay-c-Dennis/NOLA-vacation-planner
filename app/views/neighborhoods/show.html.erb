@@ -23,16 +23,18 @@
 <a href="#" class="js-next" data-id="<%=@neighborhood.id%>">Next Neighborhood</a>
 
 <script type="text/javascript" charset="utf-8">
-$(function () {
-  $(".js-next").on("click", function() {
+  $(function () {
+  $(".js-next").on("click", function(e) {
+    e.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/neighborhoods/" + nextId + ".json", function(data) {
       let neighborhood = data;
       let landmarks = neighborhood["landmarks"]
+      
       $('#list-landmarks').empty();
       landmarks.forEach(listLandmark);
       function listLandmark(landmark) {
-      	$('#list-landmarks').append(`<li><h3><a href="/landmarks/${landmark.id}">${landmark.name}</a></h3></li>`)
+        $('#list-landmarks').append(`<li><h3><a href="/landmarks/${landmark.id}">${landmark.name}</a></h3></li>`)
       }
       
       $(".neighborhoodName").text(neighborhood["name"]);
