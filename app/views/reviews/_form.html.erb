@@ -25,9 +25,11 @@
 			let reviewText = $(this).find('#review_content').val();
 			let data = $(this).serializeArray();
 			$.post(url, data).done(function(review) {
-				$('#fresh-review').append(renderReview(review));
+				$('#landmark-reviews').prepend(renderReview(review));
 				$('#new-review-form').empty();
 			})
+
+
 		});
 
 		function renderReview(review) {

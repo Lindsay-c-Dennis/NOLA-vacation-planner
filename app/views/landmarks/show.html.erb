@@ -30,8 +30,6 @@
 
 <h3>Most Recent Reviews of <%= @landmark.name %>:</h3>
 
-<div id="fresh-review"></div>
-
 <div id="landmark-reviews">
 	<%= render partial: 'reviews/review_index', locals: { array: @recent_reviews } %>
 </div>
