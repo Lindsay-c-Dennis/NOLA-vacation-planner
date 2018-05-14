@@ -1,11 +1,12 @@
 <h1>Local Landmarks:</h1>
 
 <button id="view-cats" class="btn btn-primary">Show Categories</button>
-<button id="hide-cats" class="btn btn-primary">Hide Categories</button>
 
-<div>
-	<ul id="categories">
-		
+<div id="categories", style="display: none">
+	<ul>
+		<% @categories.each do |category| %>
+			<li><h4><%= link_to category.name, category_path(category) %></h4></li>
+		<% end %>	
 	</ul>
 </div>
 

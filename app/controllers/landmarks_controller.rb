@@ -3,6 +3,7 @@ class LandmarksController < ApplicationController
 
 	def index
 		@landmarks = Landmark.all
+		@categories = Category.all
 	end
 
 	def new

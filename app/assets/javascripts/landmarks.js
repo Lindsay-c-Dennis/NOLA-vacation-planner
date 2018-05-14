@@ -4,20 +4,17 @@ $(document).ready(function() {
 
 function attachButtonListeners() {
 	$('#view-cats').on('click', function() {
-		showCats();
-	});
-	
-	$('#hide-cats').on('click', function() {
-		$('#categories').empty();
-	});
-}
+		let button = document.getElementById("view-cats")
+		let cats = document.getElementById("categories")
+		if (cats.style.display === "none") {
+			button.innerHTML = "Hide Categories";
+			cats.style.display = "block";
+		} else {
+			cats.style.display = "none";
+			button.innerHTML = "Show Categories";
+		}
+		})
 
-function showCats() {
-	$.get('/categories', (categories) => {
-		categories.forEach(buildCatLink);
-	});	
-}
 
-function buildCatLink(category) {
-	$('#categories').append(`<li><h4><a href="/categories/${category.id}">${category.name}</a></h4></li>`);
+
 }
