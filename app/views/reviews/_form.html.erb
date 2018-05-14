@@ -14,6 +14,7 @@
 <% end %>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
 <script type="text/javascript" charset="utf-8">
 	$(function () {
 		$('form').on('submit', function(e){
@@ -25,13 +26,16 @@
 			let data = $(this).serializeArray();
 			$.post(url, data).done(function(review) {
 				$('#fresh-review').append(renderReview(review));
+				$('#new-review-form').empty();
 			})
 		});
 
 		function renderReview(review) {
+			let postTime = moment(review.created_at).format('LLL')
 			return `
 				<h3> On <a href='/landmarks/${review.landmark.id}'>${review.landmark.name}</a>, ${review.user.name} says: </h3>
 				<p>${review.content}</p>
+				<h6><em>Review posted ${postTime}</em></h6>
 				
 		<br /> `
 		}
