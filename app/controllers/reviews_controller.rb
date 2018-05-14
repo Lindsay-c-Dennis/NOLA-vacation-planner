@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :find_review, only: [:edit, :update, :destroy]
-	before_action :find_landmark, only: [:new, :create]
+	#before_action :find_landmark, only: [:new, :create]
 
 	def index 
 		if params[:landmark_id]
@@ -12,15 +12,16 @@ class ReviewsController < ApplicationController
 	end		
 
 	def new 
-		@review = @landmark.reviews.build(user_id: current_user.id, landmark_id: @landmark.id)
-		render partial: 'form', locals: { review: @review, landmark: @landmark } 
+		@landmark = Landmark.find(params[:landmark_id])
+		@review = Review.new(user_id: current_user.id, landmark_id: @landmark.id)
+		render partial: 'form', locals: { review: @review, landmark: @landmark }
+		
 	end
 
 	def create
 		@review = Review.new(review_params)
 		if @review.save
-			flash[:notice] = "Review successfully added." 
-			redirect_to landmark_path(@review.landmark_id)
+			render json: @review
 		else 
 			render 'new'
 		end 

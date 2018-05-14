@@ -1,3 +1,4 @@
+<div id="new-review">
 <%= form_for [landmark, review] do |f| %>
 	<%= render partial: 'users/errors', locals: { model: review, item: "review" } %>
 
@@ -7,7 +8,32 @@
 		<%= f.text_area :content, class: "form-control" %>
 	</div>
 
-	<div class="action">
+	<div id="submit-review" class="action">
 		<%= f.submit %>
 	</div>
 <% end %>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+	$(function () {
+		$('form').on('submit', function(e){
+			e.preventDefault(); 
+			let url = $(this).attr('action')
+			let landmarkId = $('#review_landmark_id').val();
+			let userId = $(this).find('#review_user_id').val();
+			let reviewText = $(this).find('#review_content').val();
+			let data = $(this).serializeArray();
+			$.post(url, data).done(function(review) {
+				$('#fresh-review').append(renderReview(review));
+			})
+		});
+
+		function renderReview(review) {
+			return `
+				<h3> On <a href='/landmarks/${review.landmark.id}'>${review.landmark.name}</a>, ${review.user.name} says: </h3>
+				<p>${review.content}</p>
+				
+		<br /> `
+		}
+	})			
+</script>

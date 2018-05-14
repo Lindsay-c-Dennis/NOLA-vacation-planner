@@ -20,6 +20,8 @@ function attachListeners() {
 		});
 	});
 
+
+
 }
 
 function printReview(review) {
