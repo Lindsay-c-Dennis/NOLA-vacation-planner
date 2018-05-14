@@ -4,8 +4,8 @@ $(document).ready(function() {
 
 function attachButtonListeners() {
 	$('#view-cats').on('click', function() {
-		let button = document.getElementById("view-cats")
-		let cats = document.getElementById("categories")
+		let button = $("#view-cats")[0]
+		let cats = $("#categories")[0]
 		if (cats.style.display === "none") {
 			button.innerHTML = "Hide Categories";
 			cats.style.display = "block";
