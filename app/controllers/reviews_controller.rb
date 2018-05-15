@@ -42,8 +42,6 @@ class ReviewsController < ApplicationController
 
 	def destroy 
 		@review.destroy
-		flash[:notice] = "Your review has been deleted."
-		redirect_to user_reviews_path(current_user)	
 	end	
 
 	def recent_reviews 
