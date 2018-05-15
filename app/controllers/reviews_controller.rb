@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
 	before_action :find_review, only: [:edit, :update, :destroy]
-	#before_action :find_landmark, only: [:new, :create]
+	
 
 	def index 
 		if params[:landmark_id]
@@ -61,10 +61,6 @@ class ReviewsController < ApplicationController
 
 	def find_review 
 		@review = Review.find_by(id: params[:id])
-	end
-
-	def find_landmark
-		@landmark = Landmark.find_by(params[:landmark_id])
-	end				
+	end			
 
 end
