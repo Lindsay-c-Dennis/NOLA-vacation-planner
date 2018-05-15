@@ -44,14 +44,14 @@ function attachListeners() {
 		});
 	});
 
-	$(document).on('submit', '#edit_review', function(e) {
+	$(document).on('submit', '.edit_review', function(e) {
 		e.preventDefault();
 		let patchUrl = $(this).attr('action');
 		let editData = $(this).serializeArray();
 		debugger
 		$.ajax({
 			type: 'PATCH',
-			url: patchURL,
+			url: patchUrl,
 			data: editData
 		});
 	})
