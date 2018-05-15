@@ -35,13 +35,9 @@ class ReviewsController < ApplicationController
 		render partial: 'form', locals: { review: @review, landmark: @landmark }
 	end 
 
-	def update 
-		@review.content = params[:review][:content]
-		if @review.save 
-			redirect_to user_reviews_path(current_user)
-		else 
-			render 'edit'
-		end
+	def update
+		@review.update(review_params)
+		render json: @review	
 	end	
 
 	def destroy 
