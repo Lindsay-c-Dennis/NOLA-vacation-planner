@@ -31,6 +31,7 @@ class ReviewsController < ApplicationController
 	end
 
 	def edit 
+		@landmark = Landmark.find(params[:landmark_id])
 		render partial: 'form', locals: { review: @review, landmark: @landmark }
 	end 
 
