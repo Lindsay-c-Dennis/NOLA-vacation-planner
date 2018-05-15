@@ -1,4 +1,4 @@
-<div id="new-review">
+
 <%= form_for [landmark, review] do |f| %>
 	<%= render partial: 'users/errors', locals: { model: review, item: "review" } %>
 
@@ -12,5 +12,5 @@
 		<%= f.submit %>
 	</div>
 <% end %>
-</div>
+
 
