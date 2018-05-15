@@ -25,8 +25,11 @@ function attachListeners() {
 	$(document).on('click', ".edit-review", function(e) {
 		e.preventDefault();
 		const editUrl = this.href
+		//debugger
+		const reviewNum = parseInt($(this).attr("data-id"))
 		$.get(`${editUrl}`, function(data) {
-			$('#review-content').html(data)
+			//debugger
+			$(`#review-content-${reviewNum}`).html(data)
 		});
 	});
 
@@ -47,13 +50,16 @@ function attachListeners() {
 	$(document).on('submit', '.edit_review', function(e) {
 		e.preventDefault();
 		let patchUrl = $(this).attr('action');
-		let editData = $(this).serializeArray();
-		debugger
+		let newContent = this[5].value
+		//debugger
 		$.ajax({
 			type: 'PATCH',
 			url: patchUrl,
-			data: editData
-		});
+			data: {review: {content: newContent}}
+		}).done(function(data) {
+			debugger
+			$(`#review-content-${data.id}`).html(data.content)
+		})
 	})
 }
 
