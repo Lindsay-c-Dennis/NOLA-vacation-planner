@@ -57,9 +57,23 @@ function attachListeners() {
 			url: patchUrl,
 			data: {review: {content: newContent}}
 		}).done(function(data) {
-			debugger
 			$(`#review-content-${data.id}`).html(data.content)
 		})
+	})
+
+	$(document).on('click', '.delete-review', function(e) {
+		e.preventDefault();
+		const deleteUrl = this.href
+		const deleteId = parseInt($(this).attr("data-id"))
+		alert('Are you sure you want to delete your review?')
+		$.ajax({
+			url: deleteUrl,
+			type: 'post',
+			data: {_method: 'delete'}
+		}).done(function(data){
+			$(`#whole-review-${deleteId}`).empty();
+		})
+		
 	})
 }
 
