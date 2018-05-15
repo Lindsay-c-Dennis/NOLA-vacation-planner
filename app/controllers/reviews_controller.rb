@@ -6,9 +6,12 @@ class ReviewsController < ApplicationController
 		if params[:landmark_id]
 			@reviews = Landmark.find(params[:landmark_id]).reviews 
 		elsif params[:user_id]
-			@reviews = User.find(params[:user_id]).reviews 
+			@reviews = User.find(params[:user_id]).reviews.reverse 
 		end
-		render json: @reviews 
+		respond_to do |format|
+			format.html { render :index }
+			format.json { render json: @reviews }
+		end	
 	end		
 
 	def new 
@@ -28,6 +31,7 @@ class ReviewsController < ApplicationController
 	end
 
 	def edit 
+		render partial: 'form', locals: { review: @review, landmark: @landmark }
 	end 
 
 	def update 
