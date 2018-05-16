@@ -9,8 +9,10 @@ function attachListeners() {
 		$('#landmark-reviews').empty();
 		const url = this.href
 		$.get(`${url}.json`, function(reviews) {
-			//debugger
-			reviews.map(review => renderReview(review));
+			reviews.forEach(review => {
+				const viewReview = new Review(review.id, review.user.id, review.user.name, review.landmark.id, review.landmark.name, review.content, review.created_at, review.cu)
+				$('#landmark-reviews').append(viewReview.renderReview());
+			})
 		});
 	});
 
@@ -41,8 +43,8 @@ function attachListeners() {
 		let reviewText = $(this).find('#review_content').val();
 		let data = $(this).serializeArray();
 		$.post(url, data).done(function(review) {
-			newRev = new Review(review.user.id, review.user.name, review.landmark.id, review.landmark.name, review.content, review.created_at);
-			$('#landmark-reviews').prepend(newRev.renderReview());
+			newRev = new Review(review.id, review.user.id, review.user.name, review.landmark.id, review.landmark.name, review.content, review.created_at, review.cu);
+			$('#landmark-reviews').append(newRev.renderReview());
 			$('#new-review-form').empty();
 		});
 	});
@@ -78,29 +80,36 @@ function attachListeners() {
 }
 
 class Review {
-		constructor(userId, userName, landmarkId, landmarkName, content, createdAt) {
+		constructor(reviewId, userId, userName, landmarkId, landmarkName, content, createdAt, cu) {
+			this.reviewId = reviewId
 			this.userId = userId;
 			this.userName = userName
 			this.landmarkId = landmarkId;
 			this.landmarkName = landmarkName
 			this.content = content
 			this.createdAt = createdAt
+			this.currentUser = cu
 		}
 	}
 
 	Review.prototype.renderReview = function() {
-			debugger
+			//debugger
 			let postTime = moment(this.createdAt).format('LLL')
-			return `
+			let reviewBody = `
 				<h3> On <a href='/landmarks/${this.landmarkId}'>${this.landmarkName}</a>, ${this.userName} says: </h3>
 				<p>${this.content}</p>
 				<h6><em>Review posted ${postTime}</em></h6>
 				
 		<br /> `
+			let buttons = ''
+			//debugger
+			if (this.currentUser.id === this.userId) {
+				buttons = `
+					<a href="/landmarks/${this.landmarkId}/reviews/${this.reviewId}/edit", data-id="${this.reviewId}", class="edit-review btn btn-default btn-xs">Edit</a>
+					<a href="/users/${this.userId}/reviews/${this.reviewId}", data-id="${this.reviewId}", class="delete-review btn btn-danger btn-xs">Delete</a>`
+			}
+			return reviewBody + buttons;
 		}	
 
-function printReview(review) {
-	$('#landmark-reviews').append(`<li><strong>${review.user.name} says:</strong> ${review.content}</li>`);
-}
 
 
