@@ -8,7 +8,6 @@ $(function () {
     $(document).on("click", ".js-prev", function(e) {
       e.preventDefault();
       let prevId = parseInt($(".js-prev").attr("data-id")) - 1;
-      //debugger
       renderNeighborhood(prevId)
     });
 });

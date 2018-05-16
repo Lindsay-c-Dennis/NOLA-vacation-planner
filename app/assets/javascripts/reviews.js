@@ -27,10 +27,8 @@ function attachListeners() {
 	$(document).on('click', ".edit-review", function(e) {
 		e.preventDefault();
 		const editUrl = this.href
-		//debugger
 		const reviewNum = parseInt($(this).attr("data-id"))
 		$.get(`${editUrl}`, function(data) {
-			//debugger
 			$(`#review-content-${reviewNum}`).html(data)
 		});
 	});
@@ -53,7 +51,6 @@ function attachListeners() {
 		e.preventDefault();
 		let patchUrl = $(this).attr('action');
 		let newContent = this[5].value
-		//debugger
 		$.ajax({
 			type: 'PATCH',
 			url: patchUrl,
@@ -93,7 +90,6 @@ class Review {
 	}
 
 	Review.prototype.renderReview = function() {
-			//debugger
 			let postTime = moment(this.createdAt).format('LLL')
 			let reviewBody = `
 				<h3> On <a href='/landmarks/${this.landmarkId}'>${this.landmarkName}</a>, ${this.userName} says: </h3>
@@ -102,7 +98,6 @@ class Review {
 				
 		<br /> `
 			let buttons = ''
-			//debugger
 			if (this.currentUser.id === this.userId) {
 				buttons = `
 					<a href="/landmarks/${this.landmarkId}/reviews/${this.reviewId}/edit", data-id="${this.reviewId}", class="edit-review btn btn-default btn-xs">Edit</a>
