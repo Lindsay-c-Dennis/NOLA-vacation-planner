@@ -1,8 +1,21 @@
-  $(function () {
+$(function () {
   $(document).on("click", ".js-next", function(e) {
     e.preventDefault();
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/neighborhoods/" + nextId + ".json", function(data) {
+    let nextId = parseInt($(".js-next").attr("data-id")) + 1;
+    renderNeighborhood(nextId)
+    });
+
+    $(document).on("click", ".js-prev", function(e) {
+      e.preventDefault();
+      let prevId = parseInt($(".js-prev").attr("data-id")) - 1;
+      //debugger
+      renderNeighborhood(prevId)
+    });
+});
+
+
+  function renderNeighborhood(newId) {
+    $.get("/neighborhoods/" + newId + ".json", function(data) {
       let neighborhood = data;
       let landmarks = neighborhood["landmarks"]
       
@@ -15,10 +28,8 @@
       $(".neighborhoodName").text(neighborhood["name"]);
       $(".neighborhoodDescription").text(neighborhood["description"]);
       $(".neighborhoodImage img").attr("src", neighborhood["image_link"]);
-      $(".edit-neighborhood a").attr("href", `/neighborhoods/${nextId}/edit`)
-
-      // re-set the id to current on the link
-      $(".js-next").attr("data-id", neighborhood["id"]);
-    });
+      $(".edit-neighborhood a").attr("href", `/neighborhoods/${newId}/edit`)
+      $(".js-prev").attr("data-id", neighborhood["id"]);
+      $(".js-next").attr("data-id", neighborhood["id"]);  
   });
-});
+}
