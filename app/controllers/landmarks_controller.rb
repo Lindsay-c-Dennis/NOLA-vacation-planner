@@ -4,6 +4,7 @@ class LandmarksController < ApplicationController
 	def index
 		@landmarks = Landmark.all
 		@categories = Category.all
+		@neighborhoods = Neighborhood.all
 	end
 
 	def new
