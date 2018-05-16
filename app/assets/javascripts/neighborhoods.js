@@ -1,5 +1,5 @@
   $(function () {
-  $(".js-next").on("click", function(e) {
+  $(document).on("click", ".js-next", function(e) {
     e.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
     $.get("/neighborhoods/" + nextId + ".json", function(data) {
