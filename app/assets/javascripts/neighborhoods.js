@@ -18,7 +18,6 @@ $(function () {
 
   function renderNeighborhood(newId) {
     $.get("/neighborhoods/" + newId + ".json", function(data) {
-      
       let neighborhood = data;
       let landmarks = neighborhood["landmarks"]
       
@@ -30,7 +29,11 @@ $(function () {
       
       $(".neighborhoodName").text(neighborhood["name"]);
       $(".neighborhoodDescription").text(neighborhood["description"]);
-      $(".neighborhoodImage img").attr("src", neighborhood["image_link"]);
+      if (neighborhood["image_link"].includes('http')) {
+        $(".neighborhoodImage img").attr("src", neighborhood["image_link"]);
+      } else {
+        $(".neighborhoodImage img").attr("src", "/assets/" + neighborhood["image_link"]);
+      }
       $(".edit-neighborhood a").attr("href", `/neighborhoods/${newId}/edit`)
       $(".js-prev").attr("data-id", neighborhood["id"]);
       $(".js-next").attr("data-id", neighborhood["id"]);  
