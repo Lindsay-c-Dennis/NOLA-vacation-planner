@@ -8,6 +8,9 @@ $(function () {
     $(document).on("click", ".js-prev", function(e) {
       e.preventDefault();
       let prevId = parseInt($(".js-prev").attr("data-id")) - 1;
+      if (prevId === 1) {
+        $(".js-prev").hide();
+      }
       renderNeighborhood(prevId)
     });
 });
@@ -15,6 +18,7 @@ $(function () {
 
   function renderNeighborhood(newId) {
     $.get("/neighborhoods/" + newId + ".json", function(data) {
+      
       let neighborhood = data;
       let landmarks = neighborhood["landmarks"]
       
