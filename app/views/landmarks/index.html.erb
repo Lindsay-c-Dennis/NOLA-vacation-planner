@@ -5,6 +5,7 @@
 
 <div id="categories", style="display: none">
 	<ul>
+		<h3>Landmark Categories</h3>
 		<% @categories.each do |category| %>
 			<li><h4><%= link_to category.name, category_path(category) %></h4></li>
 		<% end %>	
@@ -13,6 +14,7 @@
 
 <div id="neighborhood-list", style="display: none">
 	<ul>
+		<h3>New Orleans Neighborhoods</h3>
 		<% @neighborhoods.each do |neighborhood| %>
 			<li><h4><%= link_to neighborhood.name, neighborhood_path(neighborhood) %></h4></li>
 		<% end %>	
