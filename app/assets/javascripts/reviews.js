@@ -25,6 +25,7 @@ function attachListeners() {
 	});
 
 	$(document).on('click', ".edit-review", function(e) {
+		
 		e.preventDefault();
 		const editUrl = this.href
 		const reviewNum = parseInt($(this).attr("data-id"))
@@ -35,13 +36,10 @@ function attachListeners() {
 
 	$(document).on('submit', '#new_review', function(e){
 		e.preventDefault(); 
-		let url = $(this).attr('action')
-		let landmarkId = $('#review_landmark_id').val();
-		let userId = $(this).find('#review_user_id').val();
-		let reviewText = $(this).find('#review_content').val();
+		let url = $(this).attr('action');
 		let data = $(this).serializeArray();
-		$.post(url, data).done(function(review) {
-			newRev = new Review(review.id, review.user.id, review.user.name, review.landmark.id, review.landmark.name, review.content, review.created_at, review.cu);
+		$.post(url, data).done(function(rev) {
+			newRev = new Review(rev.id, rev.user.id, rev.user.name, rev.landmark.id, rev.landmark.name, rev.content, rev.created_at, rev.cu);
 			$('#landmark-reviews').append(newRev.renderReview());
 			$('#new-review-form').empty();
 		});
@@ -93,7 +91,7 @@ class Review {
 			let postTime = moment(this.createdAt).format('LLL')
 			let reviewBody = `
 				<h3> On <a href='/landmarks/${this.landmarkId}'>${this.landmarkName}</a>, ${this.userName} says: </h3>
-				<p>${this.content}</p>
+				<p id="review-content-${this.reviewId}">${this.content}</p>
 				<h6><em>Review posted ${postTime}</em></h6>
 				
 		<br /> `
