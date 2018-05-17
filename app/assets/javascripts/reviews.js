@@ -90,16 +90,18 @@ class Review {
 	Review.prototype.renderReview = function() {
 			let postTime = moment(this.createdAt).format('LLL')
 			let reviewBody = `
+				<div id="whole-review-${this.reviewId}">
 				<h3> On <a href='/landmarks/${this.landmarkId}'>${this.landmarkName}</a>, ${this.userName} says: </h3>
 				<p id="review-content-${this.reviewId}">${this.content}</p>
 				<h6><em>Review posted ${postTime}</em></h6>
 				
 		<br /> `
-			let buttons = ''
+			let buttons = '</div>'
 			if (this.currentUser.id === this.userId) {
 				buttons = `
 					<a href="/landmarks/${this.landmarkId}/reviews/${this.reviewId}/edit", data-id="${this.reviewId}", class="edit-review btn btn-default btn-xs">Edit</a>
-					<a href="/users/${this.userId}/reviews/${this.reviewId}", data-id="${this.reviewId}", class="delete-review btn btn-danger btn-xs">Delete</a>`
+					<a href="/users/${this.userId}/reviews/${this.reviewId}", data-id="${this.reviewId}", class="delete-review btn btn-danger btn-xs">Delete</a>
+					</div>`
 			}
 			return reviewBody + buttons;
 		}	
